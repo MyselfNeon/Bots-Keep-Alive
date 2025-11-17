@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigger Multiple URLs</title>
+    <script>
+        window.onload = function() {
+            const urls = [
+                "https://session-generator-bot-iq7n.onrender.com/",
+                "https://neonfilter-bot-ume4.onrender.com/",
+                "https://filestore-bot-x4iy.onrender.com/",
+                "https://saverestrictions-bot.onrender.com/",
+                "https://filestream-bot-njtx.onrender.com/"
+            ];
+
+            // Trigger all URLs as soon as the page loads
+            urls.forEach(url => {
+                fetch(url).catch(err => console.log("Error Triggering URL: ", err));
+            });
+
+            // Optionally, show a message to the user
+            alert("All Services have Been Triggered!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Triggering All Services...</h1>
+    <p>Please wait, All Dervices are Being Triggered Automatically.</p>
+</body>
+</html>
