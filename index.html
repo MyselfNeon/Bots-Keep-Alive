@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Trigger</title>
+    <title>Service Deployment</title>
 
     <style>
         body {
@@ -97,14 +97,14 @@
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
-            alert("All Services have Been Triggered!");
+            alert("All Services are Spinning Up !");
 
             setTimeout(() => {
                 document.querySelector(".loader").style.display = "none";
                 document.querySelector(".done").style.display = "block";
 
-                document.querySelector("h1").textContent = "All Services Triggered";
-                document.querySelector("p").textContent = "Everything is running smoothly!";
+                document.querySelector("h1").textContent = "Services Live";
+                document.querySelector("p").textContent = "Smooth Sailing From Here";
             }, 3000);
         }
     </script>
@@ -114,12 +114,12 @@
 
     <img class="avatar" src="https://avatars.githubusercontent.com/u/194442566?v=4">
 
-    <h1>Triggering All Services...</h1>
+    <h1>Booting Services...</h1>
     <p>Please wait...</p>
 
     <div class="loader"></div>
 
-    <div class="done">✅ All services are now back online</div>
+    <div class="done">✅ Services are Back Online</div>
 
 </body>
 </html>
