@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Trigger</title>
+    <title>Trigger Multiple URLs</title>
 
     <style>
         body {
@@ -13,66 +13,50 @@
             font-family: 'Brush Script MT', cursive;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
             overflow: hidden;
+            padding-top: 15vh;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-size: clamp(2.5rem, 8vw, 7rem);
             letter-spacing: 2px;
             margin-bottom: 0.3rem;
-            animation: neonShift 2s infinite alternate ease-in-out;
+            animation: redToBlue 2s infinite alternate ease-in-out;
             text-shadow:
-                0 0 2px currentColor,
-                0 0 5px currentColor;
+                0 0 1px currentColor,
+                0 0 3px currentColor;
         }
 
-        @keyframes neonShift {
+        h2 {
+            font-size: clamp(1.8rem, 6vw, 4.8rem);
+            letter-spacing: 2px;
+            color: #39FF14;
+            text-shadow:
+                0 0 1px #39FF14,
+                0 0 3px #00FF00;
+            margin-top: 10px;
+        }
+
+        @keyframes redToBlue {
             0% { color: #FF2400; }
             50% { color: #FF1493; }
             100% { color: #00BFFF; }
         }
 
-        p {
-            font-size: clamp(1.5rem, 5vw, 3.5rem);
-            letter-spacing: 2px;
-            color: #39FF14;
-            text-shadow:
-                0 0 2px #39FF14,
-                0 0 5px #00FF00;
-            margin-top: 10px;
-        }
-
-        /* Loader (simple, no extra effects) */
-        .loader {
-            margin-top: 25px;
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(57, 255, 20, 0.25);
-            border-top-color: #39FF14;
+        /* Center images better */
+        .status-image {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 20px;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .done {
-            display: none;
-            margin-top: 25px;
-            font-size: clamp(1.8rem, 6vw, 4rem);
-            color: #39FF14;
-            text-shadow:
-                0 0 2px #39FF14,
-                0 0 6px #00FF00;
         }
     </style>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const urls = [
                 "https://session-generator-bot-iq7n.onrender.com/",
                 "https://neonfilter-bot-ume4.onrender.com/",
@@ -82,17 +66,15 @@
                 "https://telegraph-bot-q90q.onrender.com/"
             ];
 
-            // ORIGINAL LOGIC (NOT TOUCHED)
+            // ORIGINAL LOGIC (unchanged)
             urls.forEach(url => {
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
-            alert("All Services have Been Triggered!");
-
-            // 3-second switch to success message
+            // Change loading → completed after 3 seconds
             setTimeout(() => {
-                document.querySelector(".loader").style.display = "none";
-                document.querySelector(".done").style.display = "block";
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("completed").style.display = "block";
             }, 3000);
         }
     </script>
@@ -100,12 +82,19 @@
 
 <body>
 
-    <h1>Triggering All Services...</h1>
-    <p>Please wait...</p>
+    <!-- LOADING SECTION -->
+    <div id="loading">
+        <img class="status-image" src="https://i.gifer.com/YCZH.gif">
+        <h1>Starting Services...</h1>
+        <h2>Please wait...</h2>
+    </div>
 
-    <div class="loader"></div>
-
-    <div class="done">✅ All services are now back online</div>
+    <!-- COMPLETED SECTION (hidden at first) -->
+    <div id="completed" style="display:none;">
+        <img class="status-image" src="https://i.gifer.com/7efs.gif">
+        <h1>All Services are Back!</h1>
+        <h2>Successfully Triggered</h2>
+    </div>
 
 </body>
 </html>
