@@ -1,6 +1,6 @@
 ### Bots-Keep-Alive
 
-# 🚀 Service Trigger Page
+### 🚀 Service Trigger Page
 
 This project provides a simple HTML page that instantly wakes up or activates multiple backend services with a single page load. It is designed for developers who host bots, APIs, or microservices that go idle after inactivity.
 
@@ -56,11 +56,3 @@ The entire functionality is contained in **index.html**, including:
 No external dependencies are required.
 
 ---
-
-If you want, I can also add:
-✔ badges  
-✔ screenshots  
-✔ hosted demo link instructions  
-✔ a "Deploy to GitHub Pages" section  
-
-Just tell me! 😄
