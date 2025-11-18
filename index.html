@@ -3,72 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trigger Multiple URLs</title>
+    <title>Service Trigger</title>
 
     <style>
         body {
+            background-color: black;
             margin: 0;
-            padding: 0;
             height: 100vh;
+            font-family: 'Brush Script MT', cursive;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            font-family: "Times New Roman", serif;
-
-            /* 🌈 Animated Colorful Background */
-            background: linear-gradient(135deg, #ff7eb3, #ff65a3, #7afcff, #feff9c, #fff740);
-            background-size: 600% 600%;
-            animation: colorshift 12s ease infinite;
-
-            color: #00aaff;
-            position: relative;
+            align-items: center;
+            text-align: center;
             overflow: hidden;
         }
 
-        @keyframes colorshift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 40px;
-            border-radius: 18px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            width: 85%;
-            max-width: 480px;
-            z-index: 2;
-            box-shadow: 0 0 20px rgba(0, 153, 255, 0.35);
-            animation: fadeIn 1.2s ease;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
         h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            text-shadow: 0 0 12px #009dff, 0 0 22px #009dff;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+            animation: neonShift 2s infinite alternate ease-in-out;
+            text-shadow:
+                0 0 2px currentColor,
+                0 0 5px currentColor;
+        }
+
+        @keyframes neonShift {
+            0% { color: #FF2400; }
+            50% { color: #FF1493; }
+            100% { color: #00BFFF; }
         }
 
         p {
-            font-size: 1.1rem;
-            opacity: 0.85;
-            text-shadow: 0 0 10px rgba(0,153,255,0.7);
+            font-size: clamp(1.5rem, 5vw, 3.5rem);
+            letter-spacing: 2px;
+            color: #39FF14;
+            text-shadow:
+                0 0 2px #39FF14,
+                0 0 5px #00FF00;
+            margin-top: 10px;
         }
 
-        /* Loader */
+        /* Loader (simple, no extra effects) */
         .loader {
-            margin: 25px auto 0;
+            margin-top: 25px;
             width: 60px;
             height: 60px;
-            border: 6px solid rgba(0, 153, 255, 0.25);
-            border-top-color: #00aaff;
+            border: 5px solid rgba(57, 255, 20, 0.25);
+            border-top-color: #39FF14;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -77,21 +60,14 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Completed message */
         .done {
             display: none;
             margin-top: 25px;
-            font-size: 1.3rem;
-            color: #00eaff;
-            text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
-            opacity: 0;
-            animation: fadeDone 0.8s ease forwards;
-            font-family: "Times New Roman", serif;
-        }
-
-        @keyframes fadeDone {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            font-size: clamp(1.8rem, 6vw, 4rem);
+            color: #39FF14;
+            text-shadow:
+                0 0 2px #39FF14,
+                0 0 6px #00FF00;
         }
     </style>
 
@@ -106,14 +82,14 @@
                 "https://telegraph-bot-q90q.onrender.com/"
             ];
 
-            // ❗ Original logic (not changed)
+            // ORIGINAL LOGIC (NOT TOUCHED)
             urls.forEach(url => {
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
             alert("All Services have Been Triggered!");
 
-            // Transition loader → success message
+            // 3-second switch to success message
             setTimeout(() => {
                 document.querySelector(".loader").style.display = "none";
                 document.querySelector(".done").style.display = "block";
@@ -123,13 +99,13 @@
 </head>
 
 <body>
-    <div class="card">
-        <h1>Triggering All Services...</h1>
-        <p>Please wait while the systems come back online.</p>
 
-        <div class="loader"></div>
+    <h1>Triggering All Services...</h1>
+    <p>Please wait...</p>
 
-        <div class="done">✅ All services are now back online</div>
-    </div>
+    <div class="loader"></div>
+
+    <div class="done">✅ All services are now back online</div>
+
 </body>
 </html>
