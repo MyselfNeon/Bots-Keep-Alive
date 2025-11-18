@@ -15,39 +15,33 @@
             align-items: center;
             justify-content: center;
             font-family: "Times New Roman", serif;
-            background: #0b0b0b;
+
+            /* 🌈 Animated Colorful Background */
+            background: linear-gradient(135deg, #ff7eb3, #ff65a3, #7afcff, #feff9c, #fff740);
+            background-size: 600% 600%;
+            animation: colorshift 12s ease infinite;
+
+            color: #00aaff;
             position: relative;
             overflow: hidden;
-            color: #00aaff;
         }
 
-        /* subtle noise effect */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,\
-                <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'>\
-                <rect width='1' height='1' x='20' y='30' fill='white' opacity='0.06'/>\
-                <rect width='1' height='1' x='70' y='80' fill='white' opacity='0.05'/>\
-                <rect width='1' height='1' x='40' y='10' fill='white' opacity='0.04'/>\
-                <rect width='1' height='1' x='90' y='50' fill='white' opacity='0.07'/>\
-                </svg>");
-            opacity: 0.35;
-            pointer-events: none;
+        @keyframes colorshift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.15);
             padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(6px);
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
             text-align: center;
             width: 85%;
             max-width: 480px;
             z-index: 2;
-            box-shadow: 0 0 20px rgba(0, 153, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 153, 255, 0.35);
             animation: fadeIn 1.2s ease;
         }
 
@@ -59,13 +53,13 @@
         h1 {
             font-size: 2rem;
             margin-bottom: 8px;
-            text-shadow: 0 0 10px #009dff, 0 0 20px #009dff;
+            text-shadow: 0 0 12px #009dff, 0 0 22px #009dff;
         }
 
         p {
             font-size: 1.1rem;
-            opacity: 0.8;
-            text-shadow: 0 0 10px rgba(0,153,255,0.6);
+            opacity: 0.85;
+            text-shadow: 0 0 10px rgba(0,153,255,0.7);
         }
 
         /* Loader */
@@ -73,7 +67,7 @@
             margin: 25px auto 0;
             width: 60px;
             height: 60px;
-            border: 6px solid rgba(0, 153, 255, 0.2);
+            border: 6px solid rgba(0, 153, 255, 0.25);
             border-top-color: #00aaff;
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -112,14 +106,14 @@
                 "https://telegraph-bot-q90q.onrender.com/"
             ];
 
-            // Original logic untouched
+            // ❗ Original logic (not changed)
             urls.forEach(url => {
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
             alert("All Services have Been Triggered!");
 
-            // switch loader → success message after 3 seconds
+            // Transition loader → success message
             setTimeout(() => {
                 document.querySelector(".loader").style.display = "none";
                 document.querySelector(".done").style.display = "block";
