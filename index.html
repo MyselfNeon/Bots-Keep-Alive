@@ -17,7 +17,7 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            padding-top: 15vh;
+            padding-top: 10vh;
         }
 
         h1 {
@@ -46,12 +46,19 @@
             100% { color: #00BFFF; }
         }
 
-        /* Center images better */
         .status-image {
             width: 140px;
             height: 140px;
             margin-bottom: 20px;
             border-radius: 50%;
+        }
+
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px #00BFFF, 0 0 40px #FF1493;
         }
     </style>
 
@@ -71,7 +78,6 @@
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
-            // Change loading → completed after 3 seconds
             setTimeout(() => {
                 document.getElementById("loading").style.display = "none";
                 document.getElementById("completed").style.display = "block";
@@ -82,6 +88,9 @@
 
 <body>
 
+    <!-- NEW AVATAR AT TOP -->
+    <img class="avatar" src="https://avatars.githubusercontent.com/u/194442566?v=4">
+
     <!-- LOADING SECTION -->
     <div id="loading">
         <img class="status-image" src="https://i.gifer.com/YCZH.gif">
@@ -89,7 +98,7 @@
         <h2>Please wait...</h2>
     </div>
 
-    <!-- COMPLETED SECTION (hidden at first) -->
+    <!-- COMPLETED SECTION -->
     <div id="completed" style="display:none;">
         <img class="status-image" src="https://i.gifer.com/7efs.gif">
         <h1>All Services are Back!</h1>
