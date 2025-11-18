@@ -69,7 +69,6 @@
                 0 0 6px #00FF00;
         }
 
-        /* Updated avatar with neon cyan glow */
         .avatar {
             width: 150px;
             height: 150px;
@@ -94,17 +93,21 @@
                 "https://telegraph-bot-q90q.onrender.com/"
             ];
 
-            // ORIGINAL LOGIC (NOT TOUCHED)
+            // ORIGINAL LOGIC (UNCHANGED)
             urls.forEach(url => {
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
             alert("All Services have Been Triggered!");
 
-            // 3-second switch to success message
+            // UPDATED: Change text after 3 seconds
             setTimeout(() => {
                 document.querySelector(".loader").style.display = "none";
                 document.querySelector(".done").style.display = "block";
+
+                // NEW TEXT UPDATE
+                document.querySelector("h1").textContent = "All Services Triggered";
+                document.querySelector("p").textContent = "Everything is running smoothly!";
             }, 3000);
         }
     </script>
