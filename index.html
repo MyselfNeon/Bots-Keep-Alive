@@ -4,6 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trigger Multiple URLs</title>
+
+    <style>
+        /* Animated Gradient Background */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #4b2ba7, #3a0ca3, #7209b7);
+            background-size: 400% 400%;
+            animation: bgMove 10s ease infinite;
+            color: #fff;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Smooth fade/slide card animation */
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 40px;
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            width: 85%;
+            max-width: 480px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: dropIn 1.2s ease;
+        }
+
+        @keyframes dropIn {
+            0% { opacity: 0; transform: translateY(-40px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Text Animation */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            animation: fadeGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeGlow {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.3); opacity: 0.85; }
+            100% { text-shadow: 0 0 18px rgba(255,255,255,0.9); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 0.9; }
+        }
+
+        /* Loader Animation */
+        .loader {
+            margin: 25px auto 0;
+            width: 65px;
+            height: 65px;
+            border: 6px solid rgba(255,255,255,0.25);
+            border-top-color: #ffbe0b;
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+    </style>
+
     <script>
         window.onload = function() {
             const urls = [
@@ -15,18 +97,21 @@
                 "https://telegraph-bot-q90q.onrender.com/"
             ];
 
-            // Trigger all URLs as soon as the page loads
+            // (Functionality NOT touched)
             urls.forEach(url => {
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
-            // Optionally, show a message to the user
             alert("All Services have Been Triggered!");
         }
     </script>
 </head>
+
 <body>
-    <h1>Triggering All Services...</h1>
-    <p>Please wait, All Dervices are Being Triggered Automatically.</p>
+    <div class="card">
+        <h1>Triggering All Services...</h1>
+        <p>Please wait, your services are being activated automatically.</p>
+        <div class="loader"></div>
+    </div>
 </body>
-</html>
+    </html>
