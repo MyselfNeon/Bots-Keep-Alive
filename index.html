@@ -6,7 +6,6 @@
     <title>Trigger Multiple URLs</title>
 
     <style>
-        /* Animated Gradient Background */
         body {
             margin: 0;
             padding: 0;
@@ -15,75 +14,91 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: "Poppins", sans-serif;
-            background: linear-gradient(135deg, #1e1e2f, #4b2ba7, #3a0ca3, #7209b7);
-            background-size: 400% 400%;
-            animation: bgMove 10s ease infinite;
-            color: #fff;
+            font-family: "Times New Roman", serif;
+            background: #0b0b0b;
+            position: relative;
+            overflow: hidden;
+            color: #00aaff;
         }
 
-        @keyframes bgMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* subtle noise effect */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,\
+                <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'>\
+                <rect width='1' height='1' x='20' y='30' fill='white' opacity='0.06'/>\
+                <rect width='1' height='1' x='70' y='80' fill='white' opacity='0.05'/>\
+                <rect width='1' height='1' x='40' y='10' fill='white' opacity='0.04'/>\
+                <rect width='1' height='1' x='90' y='50' fill='white' opacity='0.07'/>\
+                </svg>");
+            opacity: 0.35;
+            pointer-events: none;
         }
 
-        /* Smooth fade/slide card animation */
         .card {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
-            border-radius: 18px;
-            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            backdrop-filter: blur(6px);
+            text-align: center;
             width: 85%;
             max-width: 480px;
-            box-shadow: 0 0 18px rgba(0,0,0,0.2);
-            text-align: center;
-            animation: dropIn 1.2s ease;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(0, 153, 255, 0.3);
+            animation: fadeIn 1.2s ease;
         }
 
-        @keyframes dropIn {
-            0% { opacity: 0; transform: translateY(-40px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Text Animation */
         h1 {
             font-size: 2rem;
-            margin-bottom: 10px;
-            animation: fadeGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes fadeGlow {
-            0% { text-shadow: 0 0 5px rgba(255,255,255,0.3); opacity: 0.85; }
-            100% { text-shadow: 0 0 18px rgba(255,255,255,0.9); opacity: 1; }
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px #009dff, 0 0 20px #009dff;
         }
 
         p {
             font-size: 1.1rem;
-            opacity: 0.9;
-            animation: fadeIn 2s ease;
+            opacity: 0.8;
+            text-shadow: 0 0 10px rgba(0,153,255,0.6);
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 0.9; }
-        }
-
-        /* Loader Animation */
+        /* Loader */
         .loader {
             margin: 25px auto 0;
-            width: 65px;
-            height: 65px;
-            border: 6px solid rgba(255,255,255,0.25);
-            border-top-color: #ffbe0b;
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(0, 153, 255, 0.2);
+            border-top-color: #00aaff;
             border-radius: 50%;
-            animation: rotate 1s linear infinite;
+            animation: spin 1s linear infinite;
         }
 
-        @keyframes rotate {
+        @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
+        /* Completed message */
+        .done {
+            display: none;
+            margin-top: 25px;
+            font-size: 1.3rem;
+            color: #00eaff;
+            text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+            opacity: 0;
+            animation: fadeDone 0.8s ease forwards;
+            font-family: "Times New Roman", serif;
+        }
+
+        @keyframes fadeDone {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 
     <script>
@@ -97,12 +112,18 @@
                 "https://telegraph-bot-q90q.onrender.com/"
             ];
 
-            // (Functionality NOT touched)
+            // Original logic untouched
             urls.forEach(url => {
                 fetch(url).catch(err => console.log("Error Triggering URL: ", err));
             });
 
             alert("All Services have Been Triggered!");
+
+            // switch loader → success message after 3 seconds
+            setTimeout(() => {
+                document.querySelector(".loader").style.display = "none";
+                document.querySelector(".done").style.display = "block";
+            }, 3000);
         }
     </script>
 </head>
@@ -110,8 +131,11 @@
 <body>
     <div class="card">
         <h1>Triggering All Services...</h1>
-        <p>Please wait, your services are being activated automatically.</p>
+        <p>Please wait while the systems come back online.</p>
+
         <div class="loader"></div>
+
+        <div class="done">✅ All services are now back online</div>
     </div>
 </body>
-    </html>
+</html>
